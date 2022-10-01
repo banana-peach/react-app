@@ -27,7 +27,8 @@
     <title>React App</title>
     <script>
       (function(doc, win){
-        var docEle = doc.documentElemment,
+        console.log(doc)
+        var docEle = doc.documentElement,
         resizeEvt = 'orienttattiononchange' in window ? "orientationonchange":"resize", // 
         recalc = function(){
           var clientWidth = docEle.clientWidth; // 获取屏幕的宽度
@@ -38,6 +39,7 @@
             docEle.style.fontSize = 100 * (clientWidth / 750) +"px" // 如果是350像素的屏幕，根字体为50px
           }
         }
+        console.log(docEle)
         if(!doc.addEventListener) retturn;
         win.addEventListener(resizeEvt,recalc, false) // 监听屏幕旋转事件，其实这个对我而言可以不去监听，没什么太大作用
         doc.addEventListener("DOMContentLoaded",recalc, false) // 页面加载完成， 计算根字体大小
