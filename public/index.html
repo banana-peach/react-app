@@ -25,6 +25,26 @@
       Learn how to configure a non-root public URL by running `npm run build`.
     -->
     <title>React App</title>
+    <script>
+      (function(doc, win){
+        var docEle = doc.documentElemment,
+        resizeEvt = 'orienttattiononchange' in window ? "orientationonchange":"resize", // 
+        recalc = function(){
+          var clientWidth = docEle.clientWidth; // 获取屏幕的宽度
+          if(!clientWidth) return; // 没有宽度则返回
+          if(clientWidth>=750){ // 如果是在分辨率超过或者等于750的大屏显示器
+            docEle.style.fontSize = "100px" // 根字体设置为100px
+          }else {
+            docEle.style.fontSize = 100 * (clientWidth / 750) +"px" // 如果是350像素的屏幕，根字体为50px
+          }
+        }
+        if(!doc.addEventListener) retturn;
+        win.addEventListener(resizeEvt,recalc, false) // 监听屏幕旋转事件，其实这个对我而言可以不去监听，没什么太大作用
+        doc.addEventListener("DOMContentLoaded",recalc, false) // 页面加载完成， 计算根字体大小
+      }
+      )(document,window)
+    
+    </script>
   </head>
   <body>
     <noscript>You need to enable JavaScript to run this app.</noscript>
