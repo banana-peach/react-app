@@ -1,6 +1,8 @@
 import React from "react";
 import "./index.less"
 import Error from "../../static/photos/error.png"
+import Voice from "./voice";
+import Welcome from "./refresh";
 
 export default class Home extends React.Component {
     constructor(props) {
@@ -13,6 +15,10 @@ export default class Home extends React.Component {
                 { id: 3, name: "用户3" },
             ]
         }
+    }
+    refreshPage(time) {
+        console.log("点击了刷新按钮, 时间是:" + time)
+        window.location.reload()
     }
 
     render() {
@@ -29,21 +35,10 @@ export default class Home extends React.Component {
                         <img src={Error} alt="" />
                     </div>
                 </div>
-                <button className="refresh-buttton">刷新</button>
-                <div className="voice-room">
-                    <div className="title">正在通话</div>
-                    <ul className="user-list">
-                        {
-                            this.state.voiceUsers.map((user) => {
-                                return (
-                                    <li key={user.id}>{user.name}</li>
-                                )
-                            })
-                        }
-                    </ul>
-                </div>
+                <button className="refresh-buttton" onClick={this.refreshPage.bind(this, new Date())}>刷新</button>
+                <Voice user={this.state.voiceUsers} />
                 <div className="patient-info">
-
+                    <Welcome name={"mao"}/>
                     <div className="title">患者信息</div>
                 </div>
             </div >
